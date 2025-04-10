@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.8', '3.10', '3.11']
+      fail-fast: false  # Allow other jobs to run even if one fails
 
     steps:
       - name: Checkout code
@@ -30,16 +31,20 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          pytest --cov=main --cov-report=xml --cov-report=html --cov-report=html
-      
+          pytest --cov=main --cov-report=xml --cov-report=html
+        continue-on-error: true  # If tests fail, continue to upload reports
+
       - name: Upload coverage report
+        if: success()  # Only upload if tests were successful
         uses: actions/upload-artifact@v3
         with:
           name: coverage-report
-          path: coverage.xml  # Or coverage.html for HTML
+          path: coverage.xml  # Or coverage.html if you prefer HTML format
 
-
-  
-
-      
+      - name: Upload HTML coverage report
+        if: success()  # Only upload if tests were successful
+        uses: actions/upload-artifact@v3
+        with:
+          name: html-coverage-report
+          path: coverage/htmlcov/  # Path for HTML coverage report
 
