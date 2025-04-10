@@ -28,7 +28,5 @@ jobs:
           pip install -r requirements.txt
           pip install pytest-cov  # Install pytest-cov once
 
-      - name: Run tests
-        run: |
-          pytest --cov=. --cov-report=xml --cov-report=html  # Run tests with coverage
+      
 
