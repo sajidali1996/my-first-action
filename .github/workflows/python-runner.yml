@@ -36,14 +36,14 @@ jobs:
 
       - name: Upload coverage report
         if: success()  # Only upload if tests were successful
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: coverage-report
           path: coverage.xml  # Or coverage.html if you prefer HTML format
 
       - name: Upload HTML coverage report
         if: success()  # Only upload if tests were successful
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: html-coverage-report
           path: coverage/htmlcov/  # Path for HTML coverage report
