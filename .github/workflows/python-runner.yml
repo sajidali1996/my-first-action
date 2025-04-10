@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.8', '3.10']  # Add more Python versions as needed
+        python-version: ['2.7','3.10','3.13.3']  # Add more Python versions as needed
       fail-fast: false  # Allow other jobs to run even if one fails
 
     steps:
